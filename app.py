@@ -34,7 +34,7 @@ def load_and_train_model():
 # Load Test Case Dataset
 @st.cache_data
 def load_test_case_dataset():
-    test_case_file = '/mnt/data/selected_demand.xlsx'
+    test_case_file = 'selected_demand.xlsx'
     test_case_data = pd.read_excel(test_case_file)
     return test_case_data
 
