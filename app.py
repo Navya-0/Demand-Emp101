@@ -46,7 +46,7 @@ def recommend_employees(model, input_data, data):
     top_employees = [employee_ids[i] for i in employee_indices]
     return top_employees
 
-# Streamlit App
+# Streamlit App Styling
 st.markdown(
     """
     <style>
@@ -73,7 +73,7 @@ selected_project_id = st.selectbox("**Project ID:**", project_ids)
 # Fetch Project Attributes
 selected_project = test_case_data[test_case_data["ID"] == selected_project_id].iloc[0]
 
-# Auto-Populated Attributes
+# Auto-Populated Attributes (Read-only on UI)
 st.markdown("### 🛠️ Auto-Populated Project Attributes")
 col1, col2 = st.columns(2)
 user_input = []
@@ -83,7 +83,7 @@ columns = data.columns.drop("Employment ID")
 for idx, column in enumerate(columns):
     with col1 if idx % 2 == 0 else col2:
         value = selected_project[column]
-        st.text_input(f"**{column}**", value, disabled=True)
+        st.text_input(f"**{column}**", value, disabled=True)  # Read-only field
         if column in label_encoders:
             user_input.append(label_encoders[column].transform([value])[0])
         else:
@@ -101,7 +101,7 @@ if st.button("🎯 Get Suitable Employees", help="Click to fetch top employees b
         
         # Display results in a styled table
         st.markdown("<div class='result-table'>", unsafe_allow_html=True)
-        st.table(employee_details)
+        st.table(employee_details[['Employment ID', 'Role Status', 'Region', 'Project Type', 'Track', 'Location Shore', 'Primary Skill (Must have)', 'Grade']])
         st.markdown("</div>", unsafe_allow_html=True)
         
     except Exception as e:
