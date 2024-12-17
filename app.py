@@ -67,11 +67,11 @@ test_case_data = load_test_case_dataset()
 
 # Project ID Section
 st.markdown("### 📋 Select Test Case Project ID")
-project_ids = test_case_data["Project ID"].unique()
+project_ids = test_case_data["ID"].unique()
 selected_project_id = st.selectbox("**Project ID:**", project_ids)
 
 # Fetch Project Attributes
-selected_project = test_case_data[test_case_data["Project ID"] == selected_project_id].iloc[0]
+selected_project = test_case_data[test_case_data["ID"] == selected_project_id].iloc[0]
 
 # Auto-Populated Attributes
 st.markdown("### 🛠️ Auto-Populated Project Attributes")
