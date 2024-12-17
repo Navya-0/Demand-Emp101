@@ -34,7 +34,7 @@ def load_and_train_model():
 # Load Test Case Dataset
 @st.cache_data
 def load_test_case_dataset():
-    test_case_file = 'selected_demand.xlsx'
+    test_case_file = 'selected_demand_1.xlsx'
     test_case_data = pd.read_excel(test_case_file)
     return test_case_data
 
@@ -67,11 +67,11 @@ test_case_data = load_test_case_dataset()
 
 # Project ID Section
 st.markdown("### 📋 Select Test Case Project ID")
-project_ids = test_case_data["ID"].unique()
+project_ids = test_case_data["Demand ID"].unique()
 selected_project_id = st.selectbox("**Project ID:**", project_ids)
 
 # Fetch Project Attributes
-selected_project = test_case_data[test_case_data["ID"] == selected_project_id].iloc[0]
+selected_project = test_case_data[test_case_data["Demand ID"] == selected_project_id].iloc[0]
 
 # Auto-Populated Attributes (Read-only on UI)
 st.markdown("### 🛠️ Auto-Populated Project Attributes")
